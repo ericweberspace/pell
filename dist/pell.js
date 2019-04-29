@@ -91,6 +91,13 @@ var defaultActions = {
       return exec(formatBlock, '<p>');
     }
   },
+	insertDiv: {  /*NEW: not in orig Pell*/
+    icon: 'div',
+    title: 'Add Div element',
+    result: function result() {
+      return exec(formatBlock, '<div>');
+    }
+  },
   quote: {
     icon: '&#8220; &#8221;',
     title: 'Quote',
@@ -141,8 +148,74 @@ var defaultActions = {
       var url = window.prompt('Enter the image URL');
       if (url) exec('insertImage', url);
     }
+  },
+	removeFormat: {  /*NEW: not in orig Pell*/
+    icon: '&#9421;',
+    title: 'Remove Formatting (basic)', /*doesn't eliminate style attr*/
+    result: function result() {
+      return exec('removeFormat');
+    }
+  },
+  superscript: {  /*NEW: not in orig Pell*/
+    icon: 's<sup>1</sup>',
+    title: 'superscript',
+		state: function state() {
+      return queryCommandState('superscript');
+    },
+    result: function result() {
+      return exec('superscript');
+    }
+  },
+  subscript: {  /*NEW: not in orig Pell*/
+    icon: 's<sub>1</sub>',
+    title: 'subscript',
+		state: function state() {
+      return queryCommandState('subscript');
+    },
+    result: function result() {
+      return exec('subscript');
+    }
+  },
+  unlink: {  /*NEW: not in orig Pell*/
+    icon: '<strike>8</strike>',
+    title: 'remove links',  /*converts 'a href=' to a span element*/
+    result: function result() {
+      return exec('unlink');
+    }
+  },
+  alignLeft: {  /*NEW: not in orig Pell*/
+    icon: 'AL',
+    title: 'Align Left style',
+    result: function result() {
+      return exec('justifyLeft');
+    }
+  },
+  alignCenter: {  /*NEW: not in orig Pell*/
+    icon: 'AC',
+    title: 'Align Center style',
+    result: function result() {
+      return exec('justifyCenter');
+    }
+  },
+  highlight: {  /*NEW: not in orig Pell*/
+    icon: '&#127912;',
+    title: 'highlight text',
+    result: function result() {
+      var color1 = window.prompt('Enter a color');
+      if (color1) exec('hiliteColor', color1);
+    }
+  },
+  changeFontName: {  /*NEW: not in orig Pell*/
+    icon: 'FF',
+    title: 'change font',
+    result: function result() {
+      var fontName = window.prompt('Enter a font name');
+      if (fontName) exec('fontName', fontName);
+    }
   }
 };
+
+//website for glyphs/emojis: http://graphemica.com
 
 var defaultClasses = {
   actionbar: 'pell-actionbar',
