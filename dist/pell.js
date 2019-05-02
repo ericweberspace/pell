@@ -176,6 +176,20 @@ var defaultActions = {
       return exec('subscript');
     }
   },
+	indent: {  /*NEW: not in orig Pell*/
+    icon: '->',
+    title: 'indent',
+    result: function result() {
+      return exec('indent');
+    }
+  },
+	outdent: {  /*NEW: not in orig Pell*/
+    icon: '<-',
+    title: 'outdent',
+    result: function result() {
+      return exec('outdent');
+    }
+  },
   unlink: {  /*NEW: not in orig Pell*/
     icon: '<strike>8</strike>',
     title: 'remove links',  /*converts 'a href=' to a span element*/
@@ -211,6 +225,25 @@ var defaultActions = {
     result: function result() {
       var fontName = window.prompt('Enter a font name');
       if (fontName) exec('fontName', fontName);
+    }
+  },
+	changeFontSize: {  /*NEW: not in orig Pell*/
+    icon: 'sS',
+    title: 'change font size (1-7)',
+    result: function result() {
+      var fontSize = parseInt(window.prompt('Enter font size 1 (small) to 7 (large), (Normal=3):'));
+      if ((fontSize >= 1) && (fontSize <= 7)) exec('fontSize', fontSize);
+    }
+  },
+	testGetSelec: {  /*NEW: not in orig Pell*/
+    icon: 'TGS',
+    title: 'testing get selection',
+    result: function result() {
+			var uniqueURL = Math.random().toString();
+			uniqueURL =  "fakefont"+uniqueURL.substr(2) /*remove the "0." part, font names require characters in front of the numbers*/
+			alert(uniqueURL);
+			exec('fontName', uniqueURL);  /*create dummy anchor tag around selection, in order to ascertain what the selection is.*/
+			//between the tags, remove style attributes. then remove the dummy tags
     }
   }
 };
